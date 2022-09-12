@@ -1,0 +1,33 @@
+plugins {
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id "org.jetbrains.kotlin.plugin.serialization" version "1.7.10"
+}
+
+group "uj"
+version "0.0.1"
+mainClassName = "uj.ApplicationKt"
+
+def isDevelopment = project.ext.has("development")
+applicationDefaultJvmArgs = ["-Dio.ktor.development=$isDevelopment"]
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.pkg.jetbrains.space/public/p/ktor/eap" }
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "io.ktor:ktor-server-double-receive:$ktor_version"
+    implementation "org.json:json:20220320"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_version"
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-server-core-jvm:$ktor_version"
+    implementation "io.ktor:ktor-server-netty-jvm:$ktor_version"
+    implementation "ch.qos.logback:logback-classic:$logback_version"
+    testImplementation "io.ktor:ktor-server-tests-jvm:$ktor_version"
+    implementation "io.ktor:ktor-server-content-negotiation:$ktor_version"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+}
